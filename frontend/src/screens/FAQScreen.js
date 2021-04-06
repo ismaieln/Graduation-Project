@@ -92,7 +92,7 @@ const FAQScreen = ({ history }) => {
                   variant='light'
                   onClick={() =>
                     alert(
-                      'Please send us a feed back on our info email(info@bundly.com)'
+                      'Please send us a feed back on our info email: info@bundly.com '
                     )
                   }
                 >

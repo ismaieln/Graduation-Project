@@ -109,7 +109,7 @@ export const cancelSubscription = (id, orderItemId) => async (
       type: SUBSCRIPTION_CANCEL_REQUEST,
     })
 
-    const {
+    let {
       userLogin: { userInfo },
     } = getState()
 

@@ -53,7 +53,6 @@ const Filter = ({
 
   return (
     <Form
-      id='bundle-search-form'
       onSubmit={(e) => {
         e.preventDefault()
         setFilter((current) => !current)

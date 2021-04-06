@@ -61,7 +61,6 @@ const ProfileScreen = ({ history }) => {
             <thead>
               <tr>
                 <th></th>
-                <th>ID</th>
                 <th>BUNDLE</th>
                 <th>DATE</th>
                 <th>SIZE</th>
@@ -84,7 +83,6 @@ const ProfileScreen = ({ history }) => {
                         height='30px'
                       />
                     </td>
-                    <td>{mySubscriptions._id}</td>
                     <td>{mySubscriptions.name}</td>
                     <td>{order.createdAt.substring(0, 10)}</td>
                     <td>{mySubscriptions.size} People</td>
@@ -134,6 +132,7 @@ const ProfileScreen = ({ history }) => {
             ))}
           </Table>
         )}
+        <p className='my-1'>*Only paid subscriptions will be shown here</p>
       </Col>
     </Row>
   )

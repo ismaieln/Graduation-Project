@@ -19,9 +19,12 @@ connectDB()
 
 const importData = async () => {
   try {
+    console.log(`farmers length: ${farmersDataSet.length}`)
+    console.log(`food items length: ${foodItemsDataSet.length}`)
+    console.log(`bundles length: ${bundlesDataSet.length}\n`)
     await Order.deleteMany()
-    await User.deleteMany()
-    const createdUsers = await User.insertMany(users)
+    // await User.deleteMany()
+    // const createdUsers = await User.insertMany(users)
     const adminUser = createdUsers[0]._id
 
     await Farmer.deleteMany()
@@ -34,14 +37,19 @@ const importData = async () => {
       foodItemsDataSet.map((product, index) => ({
         ...product,
         farmer:
-          index < farmers.length ? farmers[index] : farmers[farmers.length - 1],
+          index < farmers.length
+            ? farmers[index]
+            : farmers[Math.floor(Math.random() * farmers.length)],
       }))
     )
-
+    const shift = Math.ceil(foodItems.length / bundlesDataSet.length)
     await Product.insertMany(
-      bundlesDataSet.map((bundle) => ({
+      bundlesDataSet.map((bundle, i, arr) => ({
         ...bundle,
-        foodItems,
+        foodItems:
+          i !== arr.length - 1
+            ? foodItems.slice(i * shift, i * shift + shift - 1)
+            : foodItems.slice(i * shift),
         user: adminUser,
       }))
     )

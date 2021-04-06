@@ -215,6 +215,8 @@ const authUserFacebook = asyncHandler(async (req, res) => {
           name: user.name,
           email: user.email,
           isAdmin: user.isAdmin,
+          status: user.status,
+
           token: generateToken(user._id),
         })
       } else {
@@ -234,6 +236,8 @@ const authUserFacebook = asyncHandler(async (req, res) => {
           name: newUser.name,
           email: newUser.email,
           isAdmin: newUser.isAdmin,
+          status: newUser.status,
+
           token: generateToken(newUser._id),
         })
       } else {
@@ -273,6 +277,8 @@ const authUserGoogle = asyncHandler(async (req, res) => {
             name: user.name,
             email: user.email,
             isAdmin: user.isAdmin,
+            status: user.status,
+
             token: generateToken(user._id),
           })
         } else {
@@ -292,6 +298,8 @@ const authUserGoogle = asyncHandler(async (req, res) => {
             name: newUser.name,
             email: newUser.email,
             isAdmin: newUser.isAdmin,
+            status: newUser.status,
+
             token: generateToken(newUser._id),
           })
         } else {

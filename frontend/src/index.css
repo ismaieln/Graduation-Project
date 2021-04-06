@@ -75,12 +75,11 @@ h2 {
   margin-top: 1rem;
 }
 
-
 .map {
-  width: 81vw;
+  width: 60vw;
   height: 50vh;
   position: relative;
-  margin: 0 auto;
+  margin: 12vh auto;
 }
 .location-icon {
   font-size: 1.5rem;
@@ -114,13 +113,11 @@ h2 {
   .carousel h2 {
     font-size: 2.5vw;
   }
-  .location-info{
+  .location-info {
     width: 40%;
     bottom: 30vh;
-    font-size: .6rem;
-    padding: .1rem;
-
-
+    font-size: 0.6rem;
+    padding: 0.1rem;
   }
 }
 
@@ -135,28 +132,24 @@ h2 {
     margin-bottom: 1rem;
     margin-top: 0;
   }
-  h2{font-size: .8rem;}
-  .location-info{
+  h2 {
+    font-size: 0.8rem;
+  }
+  .location-info {
     width: 40%;
     bottom: 33vh;
-    font-size: .5rem;
-    padding: .1rem;
-
-
+    font-size: 0.5rem;
+    padding: 0.1rem;
   }
-  
 }
 @media (max-width: 500px) {
-  .location-info{
+  .location-info {
     width: 40%;
     bottom: 33vh;
-    font-size: .4rem;
-  min-height: .1rem;
-  padding: .1rem;
-
-
+    font-size: 0.4rem;
+    min-height: 0.1rem;
+    padding: 0.1rem;
   }
-  
 }
 
 .or {
@@ -197,4 +190,3 @@ h2 {
 .dropdown-item:hover {
   background-color: #78c2ad !important;
 }
-

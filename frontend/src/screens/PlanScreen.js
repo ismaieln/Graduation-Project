@@ -17,7 +17,7 @@ import { SUBSCRIPTION_UPDATE_PREFERENCES_CLEAR } from '../constants/subscription
 import useEventGaTracker from '../hooks/useEventGaTracker'
 
 const PlanScreen = ({ history, match, optimizely }) => {
-  const [bundle, setBundle] = useState('')
+  const [bundle, setBundle] = useState(match.params.id || '')
   const [persons, setPersons] = useState('')
   const [bundlePerWeek, setBundlePerWeek] = useState('')
   const [bundleName, setBundleName] = useState()
@@ -127,7 +127,13 @@ const PlanScreen = ({ history, match, optimizely }) => {
                     variant='outline-success'
                     style={{ height: '6vh', width: '8em' }}
                     className='rounded'
-                    active={bundle === product._id ? true : false}
+                    active={
+                      bundle && bundle === product._id
+                        ? true
+                        : !bundle && match.params.id === product._id
+                        ? true
+                        : false
+                    }
                     value={product._id}
                     onClick={(e) => {
                       setBundle(e.target.value)

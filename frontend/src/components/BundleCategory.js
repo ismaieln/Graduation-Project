@@ -9,9 +9,7 @@ const BundleCategory = ({ filterCategory }) => {
   }
   const selectCategory = (category) => {
     filterCategory(category)
-    document.getElementById('bundle-search-form').scrollIntoView({
-      behavior: 'smooth',
-    })
+    document.getElementById('heading-latest-products').scrollIntoView()
   }
   return (
     <>

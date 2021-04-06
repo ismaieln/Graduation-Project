@@ -5,6 +5,10 @@ import Rating from './Rating'
 import { OptimizelyFeature } from '@optimizely/react-sdk'
 
 const Product = ({ product }) => {
+  const imageStyle = {
+    height: '12em',
+    objectFit: 'cover',
+  }
   return (
     <OptimizelyFeature feature='productimage'>
       {(enabled, variables) => (
@@ -14,15 +18,13 @@ const Product = ({ product }) => {
               <Card.Img
                 src={product.image}
                 variant='top'
-                style={{ height: '18vh' }}
-                className='farmy'
+                style={imageStyle}
               />
             ) : (
               <Card.Img
                 src={product.farmImage}
                 variant='top'
-                style={{ height: '18vh' }}
-                className='farmy'
+                style={imageStyle}
               />
             )}
           </Link>

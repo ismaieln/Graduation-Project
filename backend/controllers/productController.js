@@ -40,6 +40,11 @@ const getProducts = asyncHandler(async (req, res) => {
       }
     : {}
 
+  const foodItem = Object.keys(keyword).length
+    ? await FoodItem.find({ ...keyword })
+    : []
+  const foodItemId = foodItem[0]?._id
+  const bundle = foodItemId ? await Product.find({ foodItems: foodItemId }) : []
   const category = req.query.category ? { category: req.query.category } : {}
 
   const ratingNumber = Number(req.query.rating)
@@ -47,7 +52,6 @@ const getProducts = asyncHandler(async (req, res) => {
     ? {
         rating: {
           $gte: ratingNumber,
-          $lt: ratingNumber + 1,
         },
       }
     : {}
@@ -60,16 +64,17 @@ const getProducts = asyncHandler(async (req, res) => {
   }
 
   const count = await Product.countDocuments({ ...keyword })
-  const products = await Product.find({
-    ...keyword,
-    ...category,
-    ...rating,
-    ...price,
-  })
-    .limit(pageSize)
-    .skip(pageSize * (page - 1))
-    .populate(nestedDocs)
-
+  const products = !foodItemId
+    ? await Product.find({
+        ...keyword,
+        ...category,
+        ...rating,
+        ...price,
+      })
+        .limit(pageSize)
+        .skip(pageSize * (page - 1))
+        .populate(nestedDocs)
+    : [...bundle]
   switch (req.query.orderBy) {
     case 'lowPrice':
       products.sort((a, b) => a.price - b.price)
@@ -86,7 +91,6 @@ const getProducts = asyncHandler(async (req, res) => {
     default:
       break
   }
-
   res.json({ products, page, pages: Math.ceil(count / pageSize) })
 })
 

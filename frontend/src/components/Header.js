@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
@@ -8,6 +8,8 @@ import { logout } from '../actions/userActions'
 import useEventGaTracker from '../hooks/useEventGaTracker'
 
 const Header = () => {
+  let location = useLocation()
+
   const EventGaTracker = useEventGaTracker('Plan CTA')
   const userHistoryRoutes = useSelector((state) => state.userHistoryRoutes)
   const { routesHistory } = userHistoryRoutes
@@ -41,6 +43,7 @@ const Header = () => {
             <Route render={({ history }) => <SearchBox history={history} />} />
 
             <Nav
+              activeKey={location.pathname}
               className='ml-auto'
               onClick={() => {
                 EventGaTracker('Plan CTA clicked', signupOriginPath)

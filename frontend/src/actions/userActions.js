@@ -325,7 +325,7 @@ export const updateSubscriptionStatus = (user, status) => async (
   try {
     dispatch({ type: USER_SUBSCRIPTION_REQUEST })
 
-    const {
+    let {
       userLogin: { userInfo },
     } = getState()
 
@@ -343,6 +343,8 @@ export const updateSubscriptionStatus = (user, status) => async (
     )
 
     dispatch({ type: USER_SUBSCRIPTION_SUCCESS })
+    userInfo.status = 'active'
+    localStorage.setItem('userInfo', JSON.stringify(userInfo))
 
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data })
 

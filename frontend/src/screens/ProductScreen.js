@@ -40,24 +40,6 @@ const ProductScreen = ({ history, match }) => {
     error: errorProductReview,
   } = productReviewCreate
 
-  useEffect(() => {
-    if (successProductReview) {
-      setRating(0)
-      setComment('')
-    }
-    if (!product._id || product._id !== match.params.id) {
-      dispatch(listProductDetails(match.params.id))
-      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
-    }
-  }, [dispatch, match, successProductReview, product._id])
-
-  const addToPlanHandler = () => {
-    if (userInfo) {
-      history.push(`/plan/${match.params.id}`)
-    } else {
-      history.push(`/login`)
-    }
-  }
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(
@@ -66,6 +48,28 @@ const ProductScreen = ({ history, match }) => {
         comment,
       })
     )
+  }
+  useEffect(() => {
+    if (successProductReview) {
+      setRating(0)
+      setComment('')
+    }
+    if (
+      !product._id ||
+      product._id !== match.params.id ||
+      successProductReview
+    ) {
+      dispatch(listProductDetails(match.params.id))
+      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
+    }
+  }, [dispatch, match, successProductReview, product._id, product])
+
+  const addToPlanHandler = () => {
+    if (userInfo) {
+      history.push(`/plan/${match.params.id}`)
+    } else {
+      history.push(`/login?redirect=plan/${match.params.id}`)
+    }
   }
 
   return (

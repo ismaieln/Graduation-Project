@@ -30,7 +30,7 @@ export const createPlan = (plan) => async (dispatch, getState) => {
       type: PLAN_CREATE_SUCCESS,
       payload: data,
     })
-    console.log(data)
+
     localStorage.setItem('planItems', JSON.stringify(data))
   } catch (error) {
     const message =
